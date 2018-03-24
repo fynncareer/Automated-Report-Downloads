@@ -1,5 +1,5 @@
-from functions import AmazonLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace, checkEndDateFilesExists
+from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace, checkEndDateFilesExists
 import timeit
 import os, sys
 import traceback
@@ -27,9 +27,9 @@ def main():
 
 				driver = StartFireFox(base_url, source_location, 20)
 				
-				AmazonLogin(driver, username, password)
+				SiteLogin(driver, username, password)
 				
-				#SelectSalesView(driver, "Shipped Revenue")
+				SelectSalesView(driver, "Shipped COGS")
 				
 				SelectReportingPeriod(driver, job, "Daily")	
 				
@@ -68,9 +68,9 @@ def main():
 
 				driver = StartFireFox(base_url, source_location, 20)
 				
-				AmazonLogin(driver, username, password)
+				SiteLogin(driver, username, password)
 				
-				#SelectSalesView(driver, "Shipped Revenue")
+				SelectSalesView(driver, "Shipped COGS")
 				
 				SelectReportingPeriod(driver, job, "Daily")	
 				

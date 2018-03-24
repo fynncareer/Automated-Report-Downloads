@@ -1,13 +1,14 @@
-from functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
+from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError
 import timeit
 import os, sys
 import traceback
 import datetime 
+from selenium.webdriver.common.keys import Keys
 
 start_time = timeit.default_timer()
 
-start_date, end_date = Dates("%Y%m%d", sys.argv[0])	
+start_date, end_date = Dates("%Y%m%d", sys.argv[0])
 	
 job, login, source_location, source_file, target_location, target_file_original, base_url = GetFiles(os.path.basename(sys.argv[0]))
 source_file = os.path.join(source_location, source_file)
@@ -17,9 +18,8 @@ if os.path.exists(source_file) == True:
 
 def main():
 	for source in login.split(', '):
-		target_file = os.path.join(target_location, target_file_original.format(source[:2], start_date))
+		target_file = os.path.join(target_location, target_file_original.format(start_date))
 		if os.path.exists(target_file) == False: 
-	
 			print("Downloading: {}".format(source))
 			
 			username, password = GetLogin(source)
@@ -30,13 +30,19 @@ def main():
 			
 			#SelectSalesView(driver, "Shipped Revenue")
 			
-			SelectReportingPeriod(driver, job, "Weekly")	
+			driver.find_element_by_css_selector("").send_keys(Keys.ENTER)
+			driver.find_element_by_link_text("").send_keys(Keys.ENTER)
+			
+			SelectReportingPeriod(driver, job, "Daily")	
 			
 			SelectDate(driver, start_date)	
-	
+			
+			#SelectColumns(driver, job, ["Parent ASIN", "EAN", "ISBN-13", "Brand", "Subcategory", "Category", "Author/Artist", "Binding"])
+		
 			DownloadFile(driver, job)
 			RenameDownloadedFile(source_file, target_file, 60)
-			StringReplace(target_file, '—', 0.00)
+			CopyFileToLandingArea(target_file)
+		
 		else:
 			print("{} already exists.".format(os.path.basename(target_file)))
 			

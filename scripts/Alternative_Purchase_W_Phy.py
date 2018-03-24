@@ -1,5 +1,5 @@
-from functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
+from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
 import timeit
 import os, sys
 import traceback
@@ -18,9 +18,8 @@ if os.path.exists(source_file) == True:
 def main():
 	for source in login.split(', '):
 		target_file = os.path.join(target_location, target_file_original.format(source[:2], start_date))
-	
 		if os.path.exists(target_file) == False: 
-		
+	
 			print("Downloading: {}".format(source))
 			
 			username, password = GetLogin(source)
@@ -29,20 +28,17 @@ def main():
 			
 			SiteLogin(driver, username, password)
 			
-			SelectSalesView(driver, "Shipped COGS")
+			#SelectSalesView(driver, "Shipped Revenue")
 			
-			SelectReportingPeriod(driver, "Shipped COGS", "Weekly")	
+			#SelectReportingPeriod(driver, job, "Daily")	
 			
 			SelectDate(driver, start_date)	
-			
-			SelectColumns(driver, "Sales Diagnostic", ["Parent ASIN", "EAN", "ISBN-13", "Brand", "Subcategory", "Category", "Author/Artist", "Binding"])
-
+	
 			DownloadFile(driver, job)
 			RenameDownloadedFile(source_file, target_file, 60)
 			StringReplace(target_file, '—', 0.00)
 		else:
 			print("{} already exists.".format(os.path.basename(target_file)))
-			
 			
 try:
 	main()
