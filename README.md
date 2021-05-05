@@ -8,7 +8,7 @@ We had a broken python script that was built using Selenium, a library for web a
 
 Over the next few months I wrote a suite of scripts so each file was downloaded, updated, renamed and transferred. I learned several python libraries like pandas, selenium, parimiko and openpyxl to achieve this. I tackled web elements on several different sites ('inspect element' was my friend). I made the process more modular with functions and config files to avoid repeating code. This repository is the end result. 
 
-My team mates were very pleased they no longer had to manually do the process and I improved my python skills. I really enjoyed the whole process and have to say its a project that I'm proud to have accomplished. I would love to utilise my python skills more in future.
+My team mates were very pleased they no longer had to manually do tthis work. I really enjoyed the whole process and improved my python skills. It's a project that I'm proud to have accomplished and I would love to utilise my python skills to automate more tasks in future.
 
 
 SCRIPTS:
