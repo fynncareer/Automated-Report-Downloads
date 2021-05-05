@@ -2,7 +2,7 @@ Scrape daily and weekly sales reports from Amazon and other retailers, to be ing
 
 BACKGROUND:
 
-When I joined the Application Support team at Penguin Random House it was a Support persons job to manually download these files from each site, change the data in excel, amend the filename and save it into the data warehouse load location. There were many files to change and it was hard not to make a mistake doing this (I made many!). It would usually take the whole afternoon (3-4 hours) for the unlucky person who had to do complete the task that week as part of the team rota.
+When I joined the Application Support team at Penguin Random House it was a Support person's job to manually download these files from each site, change the data in excel, amend the filename and save it into the data warehouse load location. There were many files to change and it was hard not to make a mistake doing this (I made many!). It would usually take the whole afternoon (3-4 hours) for the unlucky person who had to do complete the task that week as part of the team rota.
 
 We had a broken python script that was built using Selenium, a library for web automation testing, to automatically download some of the files from Amazon. It wasn't working but I was grateful to inherit it because I had some exposure to python. I secured myself a test environment, got to work and fixed that script after some trial and error. I wanted to do more, so volunteered to do the manual process every week which gave me the time to work on them.
 
