@@ -2,7 +2,7 @@ import os
 import datetime 
 from datetime import timedelta
 
-def ExecuteScripts(start_date = None, end_date = None, scripts = []): # scripts = list
+def ExecuteScripts(start_date = None, end_date = None, scripts = []): 
 	
 	def DateRange(start_date, end_date):
 		start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
@@ -32,6 +32,10 @@ def ExecuteScripts(start_date = None, end_date = None, scripts = []): # scripts 
 			script = "py {}".format(job)
 			os.system(script)
 			os.system(script)
+			os.system(script)
+			
+			#runs script 3 times to account for random "element not found" Selenium errors, which can be caused by DOM elements dynamically changing.
+
 			
 
 weekday = datetime.date.today().weekday()	# Mon = 0, Tues = 1, Weds = 2, Thu = 3, Fri = 4, Sat = 5, Sun = 6 
@@ -57,7 +61,7 @@ ExecuteScripts(scripts = ["SaleDiag_W_OrdRev_Phy.py", "SaleDiag_W_ShipCOGS_Phy.p
 
 ExecuteScripts(scripts = ["Alternative_Purchase_W_Phy.py"])	
 
-ExecuteScripts(scripts = ["Market_Basket_Analysis_W_Phy.py", "Repeat_Purchase_W_Phy.py"]) # 9
+ExecuteScripts(scripts = ["Market_Basket_Analysis_W_Phy.py", "Repeat_Purchase_W_Phy.py"]) 
 
 # DAILY 
 
@@ -68,5 +72,8 @@ ExecuteScripts(start_date, end_date, scripts = ["AmzSrchTerms_Books_D.py", "AmzS
 ExecuteScripts(start_date, end_date, scripts = ["SaleDiag_D_OrdRev_Dig.py", "PreOrders_D_Dig.py"])  
 
 ExecuteScripts(start_date, end_date, scripts = ["GeoSales_D_ShipRev_Phy.py", "GeoSales_D_ShipCOGS_Phy.py", "PreOrders_D_Phy.py"]) 
+
+# 121 files per week in total 
+
 
 

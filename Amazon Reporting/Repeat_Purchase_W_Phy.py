@@ -1,5 +1,5 @@
-from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
+from functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
 import timeit
 import os, sys
 import traceback

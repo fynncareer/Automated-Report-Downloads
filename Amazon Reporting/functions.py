@@ -1,5 +1,5 @@
 """
-	- Each script can be run individually.
+	- Each script can be run individually from CMD or scheduled to run via SQL Job Agent or Task Scheduler. 
 		- There is no harm in running the same script multiple times a day. 
 	- Dates are generated with a default date.
 		- To use a different date, run the script with command line parameter --start_date [dd/mm/yyyy]  
@@ -233,10 +233,10 @@ def StringReplace(target_file, str_src, str_dest):
 ########## SELENIUM FUNCTIONS
 def SiteLogin(driver, username, password):
 	time.sleep(3)
-	driver.find_element_by_id("email").clear()
-	driver.find_element_by_id("email").send_keys(username)
-	driver.find_element_by_id("password").clear()
-	driver.find_element_by_id("password").send_keys(password, Keys.ENTER)
+	driver.find_element_by_id("").clear()
+	driver.find_element_by_id("").send_keys(username)
+	driver.find_element_by_id("").clear()
+	driver.find_element_by_id("").send_keys(password, Keys.ENTER)
 	
 	time.sleep(3)
 	try:
@@ -271,7 +271,7 @@ def SelectDate(driver, from_date, to_date = False):
 	from_date_day = datetime.datetime.strptime(from_date, "%Y%m%d").strftime("%#d")
 	from_date_month_year = datetime.datetime.strptime(from_date, "%Y%m%d").strftime("%B %Y")
 	
-	xpath_date = "//div[@aria-label='day-{}']".format(from_date_day)
+	xpath_date = "".format(from_date_day)
 	
 		# if xpath_date = 27 and week 0 contains xpath_date, click next value. 
 		
@@ -288,7 +288,7 @@ def SelectDate(driver, from_date, to_date = False):
 		if (from_date_month_year == month_year_current) is not True:		#current month 
 			datepicker_month = driver.find_element_by_css_selector(datepicker_month_xpath).text # November 2017
 			while datepicker_month != from_date_month_year:
-				driver.find_element_by_css_selector("a.react-datepicker__navigation:nth-child(2)").click() # navigate to previous month		
+				driver.find_element_by_css_selector("").click() # navigate to previous month		
 				time.sleep(3)
 				datepicker_month = driver.find_element_by_css_selector(datepicker_month_xpath).text
 				
@@ -353,7 +353,7 @@ def DownloadFile(driver, job):
 		csv_button = driver.find_element_by_xpath("")
 		csv_button.send_keys(Keys.ENTER) # 0: All Views. 1: Summary View, 2: Detail View 
 	elif job in ("Pre-Orders", "Forecast and Inventory Planning", "Customer Purchase Behaviour"):
-		driver.find_element_by_xpath("").send_keys(Keys.ENTER) 
+		driver.find_element_by_xpath("/").send_keys(Keys.ENTER) 
 
 	return driver 		
 	

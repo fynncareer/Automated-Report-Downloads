@@ -1,5 +1,5 @@
-from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError
+from functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError
 import timeit
 import os, sys
 import traceback
@@ -28,7 +28,7 @@ def main():
 			
 			SiteLogin(driver, username, password)
 			
-			#SelectSalesView(driver, "Shipped Revenue")
+			SelectSalesView(driver, "Shipped Revenue")
 			
 			driver.find_element_by_css_selector("").send_keys(Keys.ENTER)
 			driver.find_element_by_link_text("").send_keys(Keys.ENTER)
@@ -37,7 +37,7 @@ def main():
 			
 			SelectDate(driver, start_date)	
 			
-			#SelectColumns(driver, job, ["Parent ASIN", "EAN", "ISBN-13", "Brand", "Subcategory", "Category", "Author/Artist", "Binding"])
+			SelectColumns(driver, job, ["ASIN", "EAN", "ISBN-13", "Brand", "Subcategory", "Category", "Author/Artist", "Binding"])
 		
 			DownloadFile(driver, job)
 			RenameDownloadedFile(source_file, target_file, 60)
@@ -48,7 +48,7 @@ def main():
 			
 try:
 	main()
-	# email_message = "{} downloaded.".format(os.path.basename(target_file))
+	email_message = "{} downloaded.".format(os.path.basename(target_file))
 	email_status = "Succeeded"
 except BaseException as e: 
 	email_message = e
@@ -59,5 +59,5 @@ except BaseException as e:
 
 execution_time = (round(timeit.default_timer() - start_time , 1))
 if email_status == "Failed":
-	#SendEmail('to_email', "from_email", job = job, duration = execution_time, status = email_status, message = email_message)
+	SendEmail('to_email', "from_email", job = job, duration = execution_time, status = email_status, message = email_message)
 	pass

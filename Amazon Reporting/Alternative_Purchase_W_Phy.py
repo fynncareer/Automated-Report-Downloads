@@ -1,5 +1,5 @@
-from scripts.functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
-from scripts.functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
+from functions import SiteLogin, SelectSalesView, SelectReportingPeriod, SelectDate, SelectColumns, DownloadFile, DateRange
+from functions import GetLogin, Dates, GetFiles, StartFireFox, RenameDownloadedFile, SendEmail, LogError, StringReplace
 import timeit
 import os, sys
 import traceback
@@ -18,9 +18,8 @@ if os.path.exists(source_file) == True:
 def main():
 	for source in login.split(', '):
 		target_file = os.path.join(target_location, target_file_original.format(source[:2], start_date))
-	
 		if os.path.exists(target_file) == False: 
-		
+	
 			print("Downloading: {}".format(source))
 			
 			username, password = GetLogin(source)
@@ -29,24 +28,21 @@ def main():
 			
 			SiteLogin(driver, username, password)
 			
-			SelectSalesView(driver, "Shipped COGS")
+			SelectSalesView(driver, "Shipped Revenue")
 			
-			SelectReportingPeriod(driver, "Shipped COGS", "Weekly")	
+			SelectReportingPeriod(driver, job, "Daily")	
 			
 			SelectDate(driver, start_date)	
-			
-			SelectColumns(driver, "Sales Diagnostic", ["Parent ASIN", "EAN", "ISBN-13", "Brand", "Subcategory", "Category", "Author/Artist", "Binding"])
-
+	
 			DownloadFile(driver, job)
 			RenameDownloadedFile(source_file, target_file, 60)
 			StringReplace(target_file, '—', 0.00)
 		else:
 			print("{} already exists.".format(os.path.basename(target_file)))
 			
-			
 try:
 	main()
-	# email_message = "{} downloaded.".format(os.path.basename(target_file))
+	email_message = "{} downloaded.".format(os.path.basename(target_file))
 	email_status = "Succeeded"
 except BaseException as e: 
 	email_message = e
@@ -57,5 +53,5 @@ except BaseException as e:
 
 execution_time = (round(timeit.default_timer() - start_time , 1))
 if email_status == "Failed":
-	#SendEmail('to_email', "from_email", job = job, duration = execution_time, status = email_status, message = email_message)
+	SendEmail('to_email', "from_email", job = job, duration = execution_time, status = email_status, message = email_message)
 	pass
