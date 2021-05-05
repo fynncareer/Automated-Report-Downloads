@@ -4,11 +4,11 @@ BACKGROUND:
 
 When I joined the Application Support team at Penguin Random House it was a Support persons job to manually download these files from each site, change the data in excel, amend the filename and save it into the data warehouse load location. There were many files to change and it was hard not to make a mistake doing this (I made many!). It would usually take the whole afternoon (3-4 hours) for the unlucky person who had to do complete the task that week as part of the team rota.
 
-We had a broken python script that was built using Selenium, a library for web automation testing, to automatically download some of the files from Amazon. It wasn't working but I was grateful to inherit it because I had some exposure to python. I secured myself a test environment and fixed that script after some trial and error. I wanted to do more, so volunteered to do the manual process every week which gave me the time to work on them.
+We had a broken python script that was built using Selenium, a library for web automation testing, to automatically download some of the files from Amazon. It wasn't working but I was grateful to inherit it because I had some exposure to python. I secured myself a test environment, got to work and fixed that script after some trial and error. I wanted to do more, so volunteered to do the manual process every week which gave me the time to work on them.
 
-Over the next few months I wrote a suite of scripts so each file was downloaded, updated, renamed and transferred. I learned several python libraries like pandas, selenium, parimiko and openpyxl to achieve this. I tackled web elements on several different sites ('inspect element' was my friend). I kept rewriting to make them more modular with functions and config files to avoid repeating code. This repository is the end result. 
+Over the next few months I wrote a suite of scripts where each file was downloaded, updated, renamed and transferred. I learned several python libraries like pandas, selenium, parimiko and openpyxl to achieve this. I kept iterating to make the scripts more modular with functions and config files to avoid repeating code and this repository is the end result. 
 
-My team mates were very pleased they no longer had to manually download any files. That was satisfying to me. I really enjoyed the whole process and improved my python. This was a project that I'm proud to have accomplished and I would love to utilise my skills to automate more manual tasks in future. 
+My team mates were very pleased they no longer had to manually download any files. That was satisfying to me as I really enjoyed the whole process and improved my python at the same time. This was a project that I'm proud to have accomplished and I would love to utilise my skills to automate more manual work in future.
 
 
 SCRIPTS:
